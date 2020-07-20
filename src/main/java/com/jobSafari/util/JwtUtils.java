@@ -5,13 +5,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Component;
 
 import com.google.common.base.Function;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-
+@Component
 public class JwtUtils {
 	private static final long serialVersionUID = -2550185165626007488L;
 
