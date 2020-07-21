@@ -18,7 +18,7 @@ public class SwegerConfugration {
 	@Bean
 	public Docket sewggerConfiguration() {
 		return new Docket(DocumentationType.SWAGGER_2).select()
-				.apis(RequestHandlerSelectors.basePackage("com.jobSafari")).paths(PathSelectors.regex("/api/*"))
+				.apis(RequestHandlerSelectors.basePackage("com.jobSafari")).paths(PathSelectors.regex("/api.*"))
 				.build().apiInfo(apiInfo());
 	}
 

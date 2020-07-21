@@ -1,4 +1,4 @@
-package com.jobSafari.securityConfiguration;
+package com.jobSafari.configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -56,7 +56,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		// We don't need CSRF for this example
 		httpSecurity.csrf().disable()
 				// dont authenticate this particular request
-				.authorizeRequests().antMatchers("/api/*","swagger-ui.html").permitAll().
+				.authorizeRequests().antMatchers("/api/login","/api/hi","/api/register","/configuration/**", "/swagger*/**", "/webjars/**","/v2/api-docs").permitAll().
 				// all other requests need to be authenticated
 				anyRequest().authenticated().and().
 				sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);

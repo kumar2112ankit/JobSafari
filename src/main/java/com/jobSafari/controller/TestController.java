@@ -1,6 +1,7 @@
 package com.jobSafari.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -13,7 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jobSafari.model.UserDetailsAuthanticion;
+import com.jobSafari.model.UserModel;
 import com.jobSafari.service.MyUserDetailService;
+import com.jobSafari.service.RegisterService;
+import com.jobSafari.util.JsoneResponeMessage;
 import com.jobSafari.util.JwtResponce;
 import com.jobSafari.util.JwtUtils;
 
@@ -31,11 +35,23 @@ public class TestController {
 
 	@Autowired
 	private JwtUtils jwtUtil;
+	
+	@Autowired
+	private RegisterService registerService;
 
 	@GetMapping(value = "/hi")
 	public String postUser() {
 		System.out.println("TestController.postUser()");
 		return "hello";
+	}
+
+	@PostMapping(value = "/register")
+	public ResponseEntity<String> registerUser(@RequestBody UserModel registerUser) {
+		
+		if(registerService.registerUser(registerUser)!=null) {
+			return new ResponseEntity<>("User Registered",HttpStatus.OK);
+		}
+		return new ResponseEntity<>("User Not Registered",HttpStatus.BAD_REQUEST);
 	}
 
 	@PostMapping(value = "/by")
