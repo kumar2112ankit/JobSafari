@@ -21,7 +21,7 @@ import com.jobSafari.filters.JwtRequestFilter;
 import com.jobSafari.service.MyUserDetailService;
 
 @EnableWebSecurity
-
+@Configuration
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	
 	
@@ -42,7 +42,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 
 	@Bean
 	public PasswordEncoder passwordEncoder() {
-		return NoOpPasswordEncoder.getInstance();
+		return new BCryptPasswordEncoder();
 	}
 
 	@Bean

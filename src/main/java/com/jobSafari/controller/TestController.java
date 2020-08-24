@@ -39,11 +39,7 @@ public class TestController {
 	@Autowired
 	private RegisterService registerService;
 
-	@GetMapping(value = "/hi")
-	public String postUser() {
-		System.out.println("TestController.postUser()");
-		return "hello";
-	}
+	
 
 	@PostMapping(value = "/register")
 	public ResponseEntity<String> registerUser(@RequestBody UserModel registerUser) {
@@ -54,11 +50,7 @@ public class TestController {
 		return new ResponseEntity<>("User Not Registered",HttpStatus.BAD_REQUEST);
 	}
 
-	@PostMapping(value = "/by")
-
-	public String postUser1() {
-		return "hello";
-	}
+	
 	
 	@PostMapping(value = "/login")
 	public ResponseEntity<?> createAuthenticationTokken(@RequestBody UserDetailsAuthanticion user) throws Exception {

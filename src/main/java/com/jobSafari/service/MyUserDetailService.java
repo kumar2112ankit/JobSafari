@@ -26,7 +26,7 @@ public class MyUserDetailService implements UserDetailsService {
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		UserModel user=registerDao.findByUserName(username);
 		if(user!=null) {
-		return new User(user.getUser_name(),user.getPassword(), new ArrayList<>());
+		return new User(user.getUserName(),user.getPassword(), new ArrayList<>());
 		}
 		else {
 			throw new UsernameNotFoundException("user not aveliable");

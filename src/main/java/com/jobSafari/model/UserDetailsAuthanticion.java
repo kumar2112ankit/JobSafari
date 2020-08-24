@@ -5,14 +5,22 @@ public class UserDetailsAuthanticion {
 	
 	private String userName;
 	private String password;
+	private String role;
 	
-	public UserDetailsAuthanticion() {}
-	public UserDetailsAuthanticion(Long id, String userName, String password, Long mobileNo) {
-		
+	public UserDetailsAuthanticion(String userName, String password, String role) {
+		super();
 		this.userName = userName;
 		this.password = password;
-		
+		this.role = role;
 	}
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
+	}
+	public UserDetailsAuthanticion() {}
+	
 	
 	public String getUserName() {
 		return userName;

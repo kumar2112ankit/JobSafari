@@ -1,10 +1,13 @@
 package com.jobSafari.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import com.sun.istack.NotNull;
@@ -29,10 +32,10 @@ public class UserModel {
 	public void setUser_id(Long user_id) {
 		this.user_id = user_id;
 	}
-	public String getUser_name() {
+	public String getUserName() {
 		return userName;
 	}
-	public void setUser_name(String userName) {
+	public void setUserName(String userName) {
 		this.userName = userName;
 	}
 	public String getEmail() {
@@ -59,9 +62,6 @@ public class UserModel {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public UserModel() {
-		
-	}
 	public UserModel(Long user_id, String userName, String email, String password, String old_password, String name) {
 		super();
 		this.user_id = user_id;
@@ -71,6 +71,14 @@ public class UserModel {
 		this.old_password = old_password;
 		this.name = name;
 	}
+	public UserModel() {
+		
+		// TODO Auto-generated constructor stub
+	}
+	
+	 //@ManyToMany(mappedBy = "roles")
+	  //  private List < Role > role;
+	
 	
 	
 
