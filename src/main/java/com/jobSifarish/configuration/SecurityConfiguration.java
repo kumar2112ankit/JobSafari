@@ -1,4 +1,4 @@
-package com.jobSafari.configuration;
+package com.jobSifarish.configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -17,8 +17,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Service;
 
-import com.jobSafari.filters.JwtRequestFilter;
-import com.jobSafari.service.MyUserDetailService;
+import com.jobSifarish.filters.JwtRequestFilter;
+import com.jobSifarish.service.MyUserDetailService;
 
 @EnableWebSecurity
 @Configuration

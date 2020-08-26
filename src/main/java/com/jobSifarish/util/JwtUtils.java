@@ -1,4 +1,4 @@
-package com.jobSafari.util;
+package com.jobSifarish.util;
 
 import java.util.Date;
 import java.util.HashMap;

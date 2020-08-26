@@ -1,4 +1,4 @@
-package com.jobSafari.util;
+package com.jobSifarish.util;
 
 public class JwtResponce {
 	private String jwt;

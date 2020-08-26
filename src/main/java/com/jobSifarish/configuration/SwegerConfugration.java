@@ -1,4 +1,4 @@
-package com.jobSafari.configuration;
+package com.jobSifarish.configuration;
 
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;

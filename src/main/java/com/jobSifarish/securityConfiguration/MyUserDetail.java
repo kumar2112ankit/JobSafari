@@ -1,4 +1,4 @@
-package com.jobSafari.securityConfiguration;
+package com.jobSifarish.securityConfiguration;
 
 import java.util.ArrayList;
 import java.util.Arrays;

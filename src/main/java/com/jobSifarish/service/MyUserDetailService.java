@@ -1,4 +1,4 @@
-package com.jobSafari.service;
+package com.jobSifarish.service;
 
 import java.util.ArrayList;
 
@@ -10,9 +10,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.jobSafari.dao.RegisterDao;
-import com.jobSafari.model.UserModel;
-import com.jobSafari.securityConfiguration.MyUserDetail;
+import com.jobSifarish.DAO.RegisterDao;
+import com.jobSifarish.model.UserModel;
+import com.jobSifarish.securityConfiguration.MyUserDetail;
 @Service
 public class MyUserDetailService implements UserDetailsService {
 

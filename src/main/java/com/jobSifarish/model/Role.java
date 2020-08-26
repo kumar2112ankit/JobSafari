@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.jobSafari.model;
+package com.jobSifarish.model;
 
 import java.util.List;
 

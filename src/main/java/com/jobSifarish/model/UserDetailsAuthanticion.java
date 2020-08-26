@@ -1,4 +1,4 @@
-package com.jobSafari.model;
+package com.jobSifarish.model;
 
 public class UserDetailsAuthanticion {
 

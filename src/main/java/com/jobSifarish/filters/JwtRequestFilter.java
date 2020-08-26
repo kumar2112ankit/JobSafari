@@ -1,4 +1,4 @@
-package com.jobSafari.filters;
+package com.jobSifarish.filters;
 
 import java.io.IOException;
 
@@ -15,8 +15,8 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import com.jobSafari.service.MyUserDetailService;
-import com.jobSafari.util.JwtUtils;
+import com.jobSifarish.service.MyUserDetailService;
+import com.jobSifarish.util.JwtUtils;
 @Component
 public class JwtRequestFilter extends OncePerRequestFilter{
 	@Autowired

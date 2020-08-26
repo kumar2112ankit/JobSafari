@@ -1,11 +1,11 @@
-package com.jobSafari.service;
+package com.jobSifarish.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.jobSafari.dao.RegisterDao;
-import com.jobSafari.model.UserModel;
+import com.jobSifarish.DAO.RegisterDao;
+import com.jobSifarish.model.UserModel;
 
 @Service
 public class RegisterService {
@@ -17,8 +17,11 @@ public class RegisterService {
 	
 	public UserModel registerUser(UserModel userModel) {
 		String password=userModel.getPassword();
-		System.out.println(password);
-		System.out.println(passwordEncoder.encode(password));
+
+
+//		System.out.println(password);
+//		System.out.println(passwordEncoder.encode(password));
+
 		userModel.setPassword(passwordEncoder.encode(password));
 		return registerDao.save(userModel);
 	}
