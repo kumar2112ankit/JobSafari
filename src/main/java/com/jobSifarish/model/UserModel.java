@@ -23,6 +23,15 @@ public class UserModel {
 	private String password;
 	private String old_password;
 	private String name;
+	private String contactNumber;
+
+	public String getContactNumber() {
+		return contactNumber;
+	}
+
+	public void setContactNumber(String contactNumber) {
+		this.contactNumber = contactNumber;
+	}
 
 	public String getUserName() {
 		return userName;
@@ -72,7 +81,8 @@ public class UserModel {
 		this.userId = userId;
 	}
 
-	public UserModel(Long userId, String userName, String email, String password, String old_password, String name) {
+	public UserModel(Long userId, String userName, String email, String password, String old_password, String name,
+			String contactNumber) {
 		super();
 		this.userId = userId;
 		this.userName = userName;
@@ -80,6 +90,7 @@ public class UserModel {
 		this.password = password;
 		this.old_password = old_password;
 		this.name = name;
+		this.contactNumber = contactNumber;
 	}
 
 	public UserModel() {

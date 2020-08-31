@@ -23,12 +23,12 @@ public class MyUserDetailService implements UserDetailsService {
 	private RegisterDao registerDao;
 
 	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+	public UserDetails loadUserByUsername(String username) {
 		UserModel user = registerDao.findByUserName(username);
 		if (user != null) {
 			return new User(user.getUserName(), user.getPassword(), new ArrayList<>());
 		} else {
-			throw new UsernameNotFoundException("User not available");
+			throw new UsernameNotFoundException("Invalid User Details");
 		}
 	}
 
