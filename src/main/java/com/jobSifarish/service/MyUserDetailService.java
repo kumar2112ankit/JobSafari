@@ -12,25 +12,24 @@ import org.springframework.stereotype.Service;
 
 import com.jobSifarish.DAO.RegisterDao;
 import com.jobSifarish.model.UserModel;
-import com.jobSifarish.securityConfiguration.MyUserDetail;
+
 @Service
 public class MyUserDetailService implements UserDetailsService {
 
 	@Autowired
 	private PasswordEncoder bcryptEncoder;
-	
+
 	@Autowired
 	private RegisterDao registerDao;
-	
+
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		UserModel user=registerDao.findByUserName(username);
-		if(user!=null) {
-		return new User(user.getUserName(),user.getPassword(), new ArrayList<>());
+		UserModel user = registerDao.findByUserName(username);
+		if (user != null) {
+			return new User(user.getUserName(), user.getPassword(), new ArrayList<>());
+		} else {
+			throw new UsernameNotFoundException("User not available");
 		}
-		else {
-			throw new UsernameNotFoundException("user not aveliable");
-		}
-		}
+	}
 
 }
