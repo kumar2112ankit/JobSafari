@@ -43,9 +43,8 @@ public class EducationDetails {
 	private String pgStream;
 
 	@OneToOne
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "user_id", unique = true)
 	private UserModel userModel;
-
 
 	public UserModel getUserModel() {
 		return userModel;
