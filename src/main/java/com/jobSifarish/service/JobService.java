@@ -33,9 +33,7 @@ public class JobService {
 	}
 	
 	public List<JobModel> searchJob(String name, String location, String technology, String date){
-		System.out.println("JobService.searchJob()");
-		System.out.println(jobDao.serchJobe(name,location,technology,date));
-		return jobDao.serchJobe(name,location,technology,date);
+		return jobDao.searchJob(name,location,technology,date);
 		
 	}
 

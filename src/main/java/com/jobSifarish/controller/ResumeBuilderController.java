@@ -12,6 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.jobSifarish.model.EducationDetails;
 import com.jobSifarish.service.ResumeBuilderService;
 
+/*
+ * 
+ * @author Manish (25/August/2020)
+ * 
+ */
+
 @RestController
 @RequestMapping(value = "/api")
 public class ResumeBuilderController {

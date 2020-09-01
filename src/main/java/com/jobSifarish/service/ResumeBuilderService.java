@@ -15,6 +15,12 @@ import com.jobSifarish.model.EducationDetails;
 import com.jobSifarish.model.UserModel;
 import com.jobSifarish.util.CommonUtils;
 
+/*
+ * 
+ * @author Manish (25/August/2020)
+ * 
+ */
+
 @Service
 public class ResumeBuilderService {
 	@Autowired
@@ -30,8 +36,17 @@ public class ResumeBuilderService {
 		try {
 			UserModel userModel = registerDao.findByUserName(request.getUserPrincipal().getName());
 			educationDetails.setUserModel(userModel);
-			resumeBuilderDAO.save(educationDetails);
-			outputJson.put(Constants.MESSAGE, "Educational Details Saved SuccessFully");
+
+			EducationDetails isEdDetailsAvl = resumeBuilderDAO.findByUserName(request.getUserPrincipal().getName());
+
+			if (isEdDetailsAvl == null) {
+				resumeBuilderDAO.save(educationDetails);
+				outputJson.put(Constants.MESSAGE, "Educational Details Saved SuccessFully");
+			} else {
+				educationDetails.setEducationId(isEdDetailsAvl.getEducationId());
+				resumeBuilderDAO.save(educationDetails);
+				outputJson.put(Constants.MESSAGE, "Educational Details Updated SuccessFully");
+			}
 		} catch (Exception e) {
 			return CommonUtils.getResponseJsonAndHttpStatusCode(outputJson, e);
 		}

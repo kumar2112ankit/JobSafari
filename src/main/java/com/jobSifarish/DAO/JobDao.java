@@ -28,6 +28,6 @@ public interface JobDao extends JpaRepository<JobModel, Integer> {
 	 * @return
 	 */
 	@Query("SELECT u FROM JobModel u WHERE u.title = ?1 or u.location = ?2 or u.technology = ?3 or u.jobPostDate = ?4")
-	List<JobModel> serchJobe(String name, String location, String technology, String date);
+	List<JobModel> searchJob(String name, String location, String technology, String date);
 
 }

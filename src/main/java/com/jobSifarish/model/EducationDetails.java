@@ -8,6 +8,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+/*
+ * 
+ * @author Manish (25/August/2020)
+ * 
+ */
+
 @Table
 @Entity
 public class EducationDetails {

@@ -28,15 +28,14 @@ public class JobController {
 	@Autowired
 	private JobService jobService;
 	
-	@PostMapping("/postJobe")
+	@PostMapping("/postJob")
 	public String postJob(@RequestBody JobModel job) {
 		return jobService.postJob(job);
-		
 	}
-	@PostMapping("/serchJobe/{title}/{location}/{technology}/{date}")
-	public List<JobModel> jobSerch(@PathVariable String title,@PathVariable String location,@PathVariable String technology,@PathVariable String date) {
+
+	@PostMapping("/searchJob/{title}/{location}/{technology}/{date}")
+	public List<JobModel> jobSearch(@PathVariable String title,@PathVariable String location,@PathVariable String technology,@PathVariable String date) {
 		return jobService.searchJob(title,location,technology,date);
-		
 	}
 
 	public void RelativeJob() {
