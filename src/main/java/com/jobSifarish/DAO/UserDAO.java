@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.jobSifarish.DO.UserDO;
 
 @Repository
-public interface RegisterDAO extends JpaRepository<UserDO, Long> {
+public interface UserDAO extends JpaRepository<UserDO, Long> {
 
 	UserDO findByEmailAddress(String userName);
 

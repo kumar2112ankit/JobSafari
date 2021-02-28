@@ -18,7 +18,7 @@ import com.jobSifarish.DO.UserDO;
 import com.jobSifarish.DO.UserDetailAuthorization;
 import com.jobSifarish.constants.Constants;
 import com.jobSifarish.service.MyUserDetailService;
-import com.jobSifarish.service.RegisterService;
+import com.jobSifarish.service.UserService;
 import com.jobSifarish.util.JwtResponce;
 import com.jobSifarish.util.JwtUtils;
 
@@ -35,7 +35,7 @@ public class UserController {
 	private JwtUtils jwtUtil;
 
 	@Autowired
-	private RegisterService registerService;
+	private UserService registerService;
 
 	@PostMapping(value = "/signup")
 	public ResponseEntity<String> registerUser(@RequestBody UserDO registerUser) throws JSONException {

@@ -8,7 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.jobSifarish.DAO.RegisterDAO;
+import com.jobSifarish.DAO.UserDAO;
 import com.jobSifarish.DAO.ResumeBuilderDAO;
 import com.jobSifarish.DO.EducationDetails;
 import com.jobSifarish.DO.UserDO;
@@ -24,7 +24,7 @@ import com.jobSifarish.util.CommonUtils;
 @Service
 public class ResumeBuilderService {
 	@Autowired
-	private RegisterDAO registerDao;
+	private UserDAO registerDao;
 
 	@Autowired
 	private ResumeBuilderDAO resumeBuilderDAO;

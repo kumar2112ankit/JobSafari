@@ -10,7 +10,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.jobSifarish.DAO.RegisterDAO;
+import com.jobSifarish.DAO.UserDAO;
 import com.jobSifarish.DO.UserDO;
 
 @Service
@@ -20,7 +20,7 @@ public class MyUserDetailService implements UserDetailsService {
 	private PasswordEncoder bcryptEncoder;
 
 	@Autowired
-	private RegisterDAO registerDAO;
+	private UserDAO registerDAO;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) {
