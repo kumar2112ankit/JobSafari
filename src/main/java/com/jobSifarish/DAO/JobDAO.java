@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import com.jobSifarish.model.JobModel;
+import com.jobSifarish.DO.JobModel;
 
 /**
  * @author Kumar
@@ -18,7 +18,7 @@ import com.jobSifarish.model.JobModel;
 	Aug 25, 2020
  */
 @Repository
-public interface JobDao extends JpaRepository<JobModel, Integer> {
+public interface JobDAO extends JpaRepository<JobModel, Integer> {
 
 	/**
 	 * @param jobDao

@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.jobSifarish.DO.UserDO;
+import com.jobSifarish.DO.UserDetailAuthorization;
 import com.jobSifarish.constants.Constants;
-import com.jobSifarish.model.UserDetailsAuthanticion;
-import com.jobSifarish.model.UserModel;
 import com.jobSifarish.service.MyUserDetailService;
 import com.jobSifarish.service.RegisterService;
 import com.jobSifarish.util.JwtResponce;
@@ -24,7 +24,7 @@ import com.jobSifarish.util.JwtUtils;
 
 @RestController
 @RequestMapping(value = "/api")
-public class TestController {
+public class UserController {
 	@Autowired
 	private AuthenticationManager authenticationManager;
 
@@ -38,7 +38,7 @@ public class TestController {
 	private RegisterService registerService;
 
 	@PostMapping(value = "/signup")
-	public ResponseEntity<String> registerUser(@RequestBody UserModel registerUser) throws JSONException {
+	public ResponseEntity<String> registerUser(@RequestBody UserDO registerUser) throws JSONException {
 
 		JSONObject jsonObject = new JSONObject();
 		try {
@@ -58,15 +58,15 @@ public class TestController {
 	}
 
 	@PostMapping(value = "/login")
-	public ResponseEntity<?> createAuthenticationTokken(@RequestBody UserDetailsAuthanticion user) throws Exception {
+	public ResponseEntity<?> createAuthenticationTokken(@RequestBody UserDetailAuthorization user) throws Exception {
 		String jwt = "";
 		JSONObject outputJson = new JSONObject();
 		UserDetails userDetails = null;
 		try {
 			authenticationManager
-					.authenticate(new UsernamePasswordAuthenticationToken(user.getUserName(), user.getPassword()));
+					.authenticate(new UsernamePasswordAuthenticationToken(user.getEmailAddress(), user.getPassword()));
 
-			userDetails = userDetailService.loadUserByUsername(user.getUserName());
+			userDetails = userDetailService.loadUserByUsername(user.getEmailAddress());
 			jwt = jwtUtil.generateToken(userDetails);
 		} catch (UsernameNotFoundException usernameNotFoundException) {
 			outputJson.put(Constants.E_MESSAGE, "User Name Available");
@@ -78,14 +78,14 @@ public class TestController {
 		return ResponseEntity.ok(new JwtResponce(jwt));
 	}
 
-	@PostMapping(value = "/checkUserName")
+	@PostMapping(value = "/validateEmail")
 	public ResponseEntity<String> validatUserName(@RequestBody String userName) throws JSONException {
 
 		JSONObject jsonObject = new JSONObject();
 		try {
-			Boolean isAvailable = registerService.validateUserName(userName);
+			String isAvailable = registerService.validateUserName(userName);
 
-			jsonObject.put(Constants.IS_USER_NAME, isAvailable);
+			jsonObject.put(Constants.RESPONSE, isAvailable);
 		} catch (JSONException jsonException) {
 			jsonObject.put(Constants.E_MESSAGE, jsonException.getMessage());
 			return new ResponseEntity<>(jsonObject.toString(), HttpStatus.BAD_REQUEST);

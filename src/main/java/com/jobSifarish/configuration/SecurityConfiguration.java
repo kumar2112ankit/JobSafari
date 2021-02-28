@@ -52,7 +52,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		httpSecurity.csrf().disable()
 				// dont authenticate this particular request
 				.authorizeRequests().antMatchers("/api/login", "/api/hi", "/api/signup", "/configuration/**",
-						"/swagger*/**", "/webjars/**", "/v2/api-docs", "/api/professionalDetails")
+						"/swagger*/**", "/webjars/**", "/v2/api-docs", "/api/professionalDetails", "/api/validateEmail")
 				.permitAll().
 				// all other requests need to be authenticated
 				anyRequest().authenticated().and().sessionManagement()

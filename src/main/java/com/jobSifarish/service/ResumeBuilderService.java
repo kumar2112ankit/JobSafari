@@ -8,11 +8,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.jobSifarish.DAO.RegisterDao;
+import com.jobSifarish.DAO.RegisterDAO;
 import com.jobSifarish.DAO.ResumeBuilderDAO;
+import com.jobSifarish.DO.EducationDetails;
+import com.jobSifarish.DO.UserDO;
 import com.jobSifarish.constants.Constants;
-import com.jobSifarish.model.EducationDetails;
-import com.jobSifarish.model.UserModel;
 import com.jobSifarish.util.CommonUtils;
 
 /*
@@ -24,7 +24,7 @@ import com.jobSifarish.util.CommonUtils;
 @Service
 public class ResumeBuilderService {
 	@Autowired
-	private RegisterDao registerDao;
+	private RegisterDAO registerDao;
 
 	@Autowired
 	private ResumeBuilderDAO resumeBuilderDAO;
@@ -34,10 +34,10 @@ public class ResumeBuilderService {
 
 		JSONObject outputJson = new JSONObject();
 		try {
-			UserModel userModel = registerDao.findByUserName(request.getUserPrincipal().getName());
-			educationDetails.setUserModel(userModel);
+			UserDO userDO = registerDao.findByEmailAddress(request.getUserPrincipal().getName());
+			educationDetails.setUserDO(userDO);
 
-			EducationDetails isEdDetailsAvl = resumeBuilderDAO.findByUserName(request.getUserPrincipal().getName());
+			EducationDetails isEdDetailsAvl = resumeBuilderDAO.findByEmailAddress(request.getUserPrincipal().getName());
 
 			if (isEdDetailsAvl == null) {
 				resumeBuilderDAO.save(educationDetails);

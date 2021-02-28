@@ -5,35 +5,35 @@ import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.jobSifarish.DAO.RegisterDao;
-import com.jobSifarish.model.UserModel;
+import com.jobSifarish.DAO.RegisterDAO;
+import com.jobSifarish.DO.UserDO;
 
 @Service
 public class RegisterService {
 	@Autowired
-	private RegisterDao registerDao;
+	private RegisterDAO registerDAO;
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
-	public UserModel registerUser(UserModel userModel) throws Exception {
-		if (registerDao.findByUserName(userModel.getUserName()) != null) {
+	public UserDO registerUser(UserDO userModel) throws Exception {
+		if (registerDAO.findByEmailAddress(userModel.getEmailAddress()) != null) {
 			throw new Exception("User Name Already Available");
 		}
-		String password=userModel.getPassword();
+		String password = userModel.getPassword();
 		userModel.setPassword(passwordEncoder.encode(password));
-		return registerDao.save(userModel);
+		return registerDAO.save(userModel);
 	}
 
-	public Boolean validateUserName(String userName) throws Exception {
+	public String validateUserName(String userName) throws Exception {
 
 		JSONObject jsonObject = new JSONObject(userName);
 
-		Boolean isVailable = false;
+		String isVailable = "Email not registered";
 
-		UserModel userModel = registerDao.findByUserName(jsonObject.optString("user_name"));
+		UserDO userModel = registerDAO.findByEmailAddress(jsonObject.optString("emailAddress"));
 		if (userModel != null) {
-			isVailable = true;
+			isVailable = "Email Already registered";
 		}
 		return isVailable;
 	}

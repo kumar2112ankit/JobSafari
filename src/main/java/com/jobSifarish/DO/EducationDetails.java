@@ -1,4 +1,4 @@
-package com.jobSifarish.model;
+package com.jobSifarish.DO;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -49,15 +49,15 @@ public class EducationDetails {
 	private String pgStream;
 
 	@OneToOne
-	@JoinColumn(name = "user_id", unique = true)
-	private UserModel userModel;
+	@JoinColumn(name = "emailAddress", unique = true)
+	private UserDO userDO;
 
-	public UserModel getUserModel() {
-		return userModel;
+	public UserDO getUserDO() {
+		return userDO;
 	}
 
-	public void setUserModel(UserModel userModel) {
-		this.userModel = userModel;
+	public void setUserDO(UserDO userDO) {
+		this.userDO = userDO;
 	}
 
 	public Long getEducationId() {

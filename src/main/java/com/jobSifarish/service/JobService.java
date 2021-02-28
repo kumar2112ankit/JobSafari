@@ -8,8 +8,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.jobSifarish.DAO.JobDao;
-import com.jobSifarish.model.JobModel;
+import com.jobSifarish.DAO.JobDAO;
+import com.jobSifarish.DO.JobModel;
 
 /**
  * @author Kumar
@@ -20,10 +20,10 @@ import com.jobSifarish.model.JobModel;
 @Service
 public class JobService {
 	@Autowired
-	private JobDao jobDao;
+	private JobDAO jobDAO;
 	
 	public String postJob(JobModel job){
-		if(jobDao.save(job)!=null) {
+		if(jobDAO.save(job)!=null) {
 			return "job posted succesfully";
 		}
 		else {
@@ -33,7 +33,7 @@ public class JobService {
 	}
 	
 	public List<JobModel> searchJob(String name, String location, String technology, String date){
-		return jobDao.searchJob(name,location,technology,date);
+		return jobDAO.searchJob(name,location,technology,date);
 		
 	}
 

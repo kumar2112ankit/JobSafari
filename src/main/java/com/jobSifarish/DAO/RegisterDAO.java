@@ -3,12 +3,12 @@ package com.jobSifarish.DAO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.jobSifarish.model.UserModel;
+import com.jobSifarish.DO.UserDO;
 
 @Repository
-public interface RegisterDao extends JpaRepository<UserModel, Long> {
+public interface RegisterDAO extends JpaRepository<UserDO, Long> {
 
-	UserModel findByUserName(String userNmae);
+	UserDO findByEmailAddress(String userName);
 
 //	UserModel findByUser_id(Long userId);
 

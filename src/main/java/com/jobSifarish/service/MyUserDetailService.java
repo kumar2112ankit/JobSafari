@@ -10,8 +10,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.jobSifarish.DAO.RegisterDao;
-import com.jobSifarish.model.UserModel;
+import com.jobSifarish.DAO.RegisterDAO;
+import com.jobSifarish.DO.UserDO;
 
 @Service
 public class MyUserDetailService implements UserDetailsService {
@@ -20,16 +20,15 @@ public class MyUserDetailService implements UserDetailsService {
 	private PasswordEncoder bcryptEncoder;
 
 	@Autowired
-	private RegisterDao registerDao;
+	private RegisterDAO registerDAO;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) {
-		UserModel user = registerDao.findByUserName(username);
+		UserDO user = registerDAO.findByEmailAddress(username);
 		if (user != null) {
-			return new User(user.getUserName(), user.getPassword(), new ArrayList<>());
+			return new User(user.getEmailAddress(), user.getPassword(), new ArrayList<>());
 		} else {
 			throw new UsernameNotFoundException("Invalid User Details");
 		}
 	}
-
 }

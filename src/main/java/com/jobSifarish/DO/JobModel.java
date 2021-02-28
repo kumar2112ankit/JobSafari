@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.jobSifarish.model;
+package com.jobSifarish.DO;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

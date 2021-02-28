@@ -1,4 +1,4 @@
-package com.jobSifarish.model;
+package com.jobSifarish.DO;
 
 public class ProfessionalDetails {
 
