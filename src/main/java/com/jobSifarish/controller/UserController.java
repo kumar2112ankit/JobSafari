@@ -1,5 +1,7 @@
 package com.jobSifarish.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.boot.configurationprocessor.json.JSONObject;
@@ -96,4 +98,14 @@ public class UserController {
 		return new ResponseEntity<>(jsonObject.toString(), HttpStatus.OK);
 	}
 
+	@PostMapping(value = "/getPersonalDetails")
+	public ResponseEntity<String> getUserDetails(HttpServletRequest request) throws Exception {
+		return registerService.getUserDetails(request.getUserPrincipal().getName());
+	}
+
+	@PostMapping(value = "/updatePersonalDetails")
+	public ResponseEntity<String> updateUserDetails(@RequestBody UserDO userDO, HttpServletRequest request)
+			throws Exception {
+		return registerService.updateUser(userDO);
+	}
 }
