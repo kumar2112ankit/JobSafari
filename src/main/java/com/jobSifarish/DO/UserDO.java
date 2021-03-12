@@ -47,6 +47,9 @@ public class UserDO {
 	@OneToMany(mappedBy = "userDO", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<EducationDetails> educationDetailList;
 
+	@OneToMany(mappedBy = "userDO", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<JobDiscriptionDO> jobDiscriptionDOList;
+
 	public Long getUserId() {
 		return userId;
 	}
@@ -175,13 +178,30 @@ public class UserDO {
 		this.skillSet = skillSet;
 	}
 
+	public List<EducationDetails> getEducationDetailList() {
+		return educationDetailList;
+	}
+
+	public void setEducationDetailList(List<EducationDetails> educationDetailList) {
+		this.educationDetailList = educationDetailList;
+	}
+
+	public List<JobDiscriptionDO> getJobDiscriptionDOList() {
+		return jobDiscriptionDOList;
+	}
+
+	public void setJobDiscriptionDOList(List<JobDiscriptionDO> jobDiscriptionDOList) {
+		this.jobDiscriptionDOList = jobDiscriptionDOList;
+	}
+
 	public UserDO() {
 
 	}
 
 	public UserDO(Long userId, String emailAddress, String firstName, String middleName, String lastName,
 			String mobileNumber, String password, String oldPassword, String gender, Date dob, String address,
-			String city, String state, String country, byte[] profileImageUrl) {
+			String city, String state, String country, String skillSet, byte[] profileImageUrl,
+			List<EducationDetails> educationDetailList, List<JobDiscriptionDO> jobDiscriptionDOList) {
 		super();
 		this.userId = userId;
 		this.emailAddress = emailAddress;
@@ -197,6 +217,9 @@ public class UserDO {
 		this.city = city;
 		this.state = state;
 		this.country = country;
+		this.skillSet = skillSet;
 		this.profileImageUrl = profileImageUrl;
+		this.educationDetailList = educationDetailList;
+		this.jobDiscriptionDOList = jobDiscriptionDOList;
 	}
 }

@@ -10,6 +10,10 @@ import org.springframework.util.StringUtils;
 
 import com.jobSifarish.constants.Constants;
 
+/*
+ * @Author Manish
+ * @ 12/March/2021
+ * */
 public class CommonUtils {
 
 	public static ResponseEntity<String> getResponseJsonAndHttpStatusCode(JSONObject outputJson, Exception e) {

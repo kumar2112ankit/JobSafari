@@ -8,6 +8,11 @@ import org.springframework.stereotype.Repository;
 
 import com.jobSifarish.DO.EducationDetails;
 
+/*
+ * @Author Manish
+  @ 12/March/2021
+ */
+
 @Repository
 public interface ResumeBuilderDAO extends JpaRepository<EducationDetails, Long> {
 	EducationDetails findByEducationId(Long educationId);

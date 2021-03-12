@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.jobSifarish.DAO.UserDAO;
 import com.jobSifarish.DO.UserDO;
 import com.jobSifarish.constants.Constants;
+import com.jobSifarish.util.CommonUtils;
 
 @Service
 public class UserService {
@@ -23,6 +24,14 @@ public class UserService {
 	public UserDO registerUser(UserDO userModel) throws Exception {
 		if (userDAO.findByEmailAddress(userModel.getEmailAddress()) != null) {
 			throw new Exception("User Name Already Available");
+		}
+
+		if (!CommonUtils.validateMobileNumber(userModel.getMobileNumber())) {
+			throw new Exception("Wrong mobile no format");
+		}
+
+		if (!CommonUtils.validateEmailFormat(userModel.getEmailAddress())) {
+			throw new Exception("Wrong Email Id Format");
 		}
 		String password = userModel.getPassword();
 		userModel.setPassword(passwordEncoder.encode(password));
