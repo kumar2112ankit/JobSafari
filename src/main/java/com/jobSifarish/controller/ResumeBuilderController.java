@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jobSifarish.DO.EducationDetails;
 import com.jobSifarish.service.ResumeBuilderService;
 
 /*
@@ -25,8 +24,8 @@ public class ResumeBuilderController {
 	@Autowired
 	private ResumeBuilderService resumeBuilderService;
 
-	@PostMapping(value = "/educationDetails")
-	public ResponseEntity<String> registerEducationalDetail(@RequestBody EducationDetails educationDetails,
+	@PostMapping(value = "/updateEducationDetails")
+	public ResponseEntity<String> registerEducationalDetail(@RequestBody String educationDetails,
 			HttpServletRequest request) {
 
 		return resumeBuilderService.registerEducationalDetails(request, educationDetails);

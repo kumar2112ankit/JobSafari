@@ -93,7 +93,7 @@ public class UserService {
 			UserDO updatedUserDO = userDAO.save(userModel);
 
 			if (updatedUserDO != null) {
-				jsonObject.put(Constants.MESSAGE, "User Registered SuccessFully");
+				jsonObject.put(Constants.MESSAGE, "User Details Updated SuccessFully");
 			} else {
 				jsonObject.put(Constants.MESSAGE, "User Not Registered");
 			}

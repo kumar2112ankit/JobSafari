@@ -1,15 +1,21 @@
 package com.jobSifarish.service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.configurationprocessor.json.JSONArray;
 import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.jobSifarish.DAO.UserDAO;
 import com.jobSifarish.DAO.ResumeBuilderDAO;
+import com.jobSifarish.DAO.UserDAO;
 import com.jobSifarish.DO.EducationDetails;
 import com.jobSifarish.DO.UserDO;
 import com.jobSifarish.constants.Constants;
@@ -30,26 +36,60 @@ public class ResumeBuilderService {
 	private ResumeBuilderDAO resumeBuilderDAO;
 
 	public ResponseEntity<String> registerEducationalDetails(HttpServletRequest request,
-			EducationDetails educationDetails) {
+			String educationDetailsString) {
 
 		JSONObject outputJson = new JSONObject();
+
 		try {
+
+			List<EducationDetails> educationDetailsList = new ArrayList<EducationDetails>();
 			UserDO userDO = registerDao.findByEmailAddress(request.getUserPrincipal().getName());
-			educationDetails.setUserDO(userDO);
+			Map<String, EducationDetails> availableEducationalMap = getEducationalDetailsIntoMap(
+					request.getUserPrincipal().getName());
+			if (educationDetailsString != null && educationDetailsString.length() > 0) {
+				JSONArray educationJsonArray = new JSONArray(educationDetailsString);
+				for (int jsonIndex = 0; jsonIndex < educationJsonArray.length(); jsonIndex++) {
 
-			EducationDetails isEdDetailsAvl = resumeBuilderDAO.findByEmailAddress(request.getUserPrincipal().getName());
+					JSONObject educationObject = educationJsonArray.optJSONObject(jsonIndex);
+					EducationDetails educationDetails = new EducationDetails();
 
-			if (isEdDetailsAvl == null) {
-				resumeBuilderDAO.save(educationDetails);
-				outputJson.put(Constants.MESSAGE, "Educational Details Saved SuccessFully");
-			} else {
-				educationDetails.setEducationId(isEdDetailsAvl.getEducationId());
-				resumeBuilderDAO.save(educationDetails);
-				outputJson.put(Constants.MESSAGE, "Educational Details Updated SuccessFully");
+					educationDetails.setEducationType(educationObject.optString(Constants.EDUCATION_TYPE));
+					educationDetails.setSchoolName(educationObject.optString(Constants.SCHOOL_NAME));
+					educationDetails.setSessionPeriod(educationObject.optString(Constants.SESSION_PERIOD));
+					educationDetails.setScoredMarks(educationObject.optString(Constants.SCORED_MARKS));
+					educationDetails.setTotalMarks(educationObject.optString(Constants.TOTAL_MARKS));
+					educationDetails.setBoardName(educationObject.optString(Constants.BOARD_NAME));
+					educationDetails.setLocation(educationObject.optString(Constants.LOCATION));
+
+					if (availableEducationalMap.containsKey(educationObject.optString(Constants.EDUCATION_TYPE))) {
+
+						EducationDetails details = availableEducationalMap
+								.get(educationObject.optString(Constants.EDUCATION_TYPE));
+						educationDetails.setEducationId(details.getEducationId());
+					}
+					educationDetails.setUserDO(userDO);
+
+					educationDetailsList.add(educationDetails);
+				}
+
 			}
+
+			resumeBuilderDAO.saveAll(educationDetailsList);
+			outputJson.put(Constants.MESSAGE, "Educational Details Updated SuccessFully");
 		} catch (Exception e) {
 			return CommonUtils.getResponseJsonAndHttpStatusCode(outputJson, e);
 		}
 		return new ResponseEntity<String>(outputJson.toString(), HttpStatus.OK);
+	}
+
+	private Map<String, EducationDetails> getEducationalDetailsIntoMap(String emailId) {
+
+		Map<String, EducationDetails> educationalMap = new HashMap<String, EducationDetails>();
+		List<EducationDetails> isEdDetailsAvl = resumeBuilderDAO.findByEmailAddress(emailId);
+
+		for (EducationDetails educationDetails : isEdDetailsAvl) {
+			educationalMap.put(educationDetails.getEducationType(), educationDetails);
+		}
+		return educationalMap;
 	}
 }

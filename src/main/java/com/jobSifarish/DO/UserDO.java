@@ -1,13 +1,17 @@
 package com.jobSifarish.DO;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.sun.istack.NotNull;
@@ -19,6 +23,7 @@ public class UserDO {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long userId;
+
 	@NotNull
 	@Column(unique = true, length = 200, nullable = false)
 	private String emailAddress;
@@ -37,6 +42,9 @@ public class UserDO {
 	@Lob
 //	@Column(name = "logo", length = 100000)
 	private byte[] profileImageUrl;
+
+	@OneToMany(mappedBy = "userDO", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<EducationDetails> educationDetailList;
 
 	public Long getUserId() {
 		return userId;

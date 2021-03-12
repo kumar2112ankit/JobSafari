@@ -1,11 +1,11 @@
 package com.jobSifarish.DO;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /*
@@ -22,268 +22,123 @@ public class EducationDetails {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long educationId;
 
-	private String seniorSecSchoolName;
-	private String seniorSecSchoolSession;
-	private String seniorSecSchoolMarks;
-	private String seniorSecSchoolUniversity;
-	private String seniorSecSchoolLocation;
+	private String educationType;
+	private String schoolName;
+	private String sessionPeriod;
+	private String scoredMarks;
+	private String totalMarks;
+	private String boardName;
+	private String location;
 
-	private String higSeniorSecSchoolName;
-	private String higSeniorSecSchoolSession;
-	private String higSeniorSecSchoolMarks;
-	private String higSeniorSecSchoolUniversity;
-	private String higSeniorSecSchoolLocation;
-
-	private String ugCollegeName;
-	private String ugCollegeSession;
-	private String ugCollegeMarks;
-	private String ugCollegeUniversity;
-	private String ugCollegeLocation;
-	private String ugStream;
-
-	private String pgCollegeName;
-	private String pgCollegeSession;
-	private String pgCollegeMarks;
-	private String pgCollegeUniversity;
-	private String pgCollegeLocation;
-	private String pgStream;
-
-	@OneToOne
-	@JoinColumn(name = "emailAddress", unique = true)
+	@ManyToOne(fetch = FetchType.LAZY)
 	private UserDO userDO;
 
-	public UserDO getUserDO() {
-		return userDO;
+	public EducationDetails() {
+
 	}
 
-	public void setUserDO(UserDO userDO) {
-		this.userDO = userDO;
-	}
 
 	public Long getEducationId() {
 		return educationId;
 	}
 
+
 	public void setEducationId(Long educationId) {
 		this.educationId = educationId;
 	}
 
-	public String getSeniorSecSchoolName() {
-		return seniorSecSchoolName;
+
+	public String getEducationType() {
+		return educationType;
 	}
 
-	public void setSeniorSecSchoolName(String seniorSecSchoolName) {
-		this.seniorSecSchoolName = seniorSecSchoolName;
+
+	public void setEducationType(String educationType) {
+		this.educationType = educationType;
 	}
 
-	public String getSeniorSecSchoolSession() {
-		return seniorSecSchoolSession;
+
+	public String getSchoolName() {
+		return schoolName;
 	}
 
-	public void setSeniorSecSchoolSession(String seniorSecSchoolSession) {
-		this.seniorSecSchoolSession = seniorSecSchoolSession;
+
+	public void setSchoolName(String schoolName) {
+		this.schoolName = schoolName;
 	}
 
-	public String getSeniorSecSchoolMarks() {
-		return seniorSecSchoolMarks;
+
+	public String getSessionPeriod() {
+		return sessionPeriod;
 	}
 
-	public void setSeniorSecSchoolMarks(String seniorSecSchoolMarks) {
-		this.seniorSecSchoolMarks = seniorSecSchoolMarks;
+
+	public void setSessionPeriod(String sessionPeriod) {
+		this.sessionPeriod = sessionPeriod;
 	}
 
-	public String getSeniorSecSchoolUniversity() {
-		return seniorSecSchoolUniversity;
+
+	public String getScoredMarks() {
+		return scoredMarks;
 	}
 
-	public void setSeniorSecSchoolUniversity(String seniorSecSchoolUniversity) {
-		this.seniorSecSchoolUniversity = seniorSecSchoolUniversity;
+
+	public void setScoredMarks(String scoredMarks) {
+		this.scoredMarks = scoredMarks;
 	}
 
-	public String getSeniorSecSchoolLocation() {
-		return seniorSecSchoolLocation;
+
+	public String getTotalMarks() {
+		return totalMarks;
 	}
 
-	public void setSeniorSecSchoolLocation(String seniorSecSchoolLocation) {
-		this.seniorSecSchoolLocation = seniorSecSchoolLocation;
+
+	public void setTotalMarks(String totalMarks) {
+		this.totalMarks = totalMarks;
 	}
 
-	public String getHigSeniorSecSchoolName() {
-		return higSeniorSecSchoolName;
+
+	public String getBoardName() {
+		return boardName;
 	}
 
-	public void setHigSeniorSecSchoolName(String higSeniorSecSchoolName) {
-		this.higSeniorSecSchoolName = higSeniorSecSchoolName;
+
+	public void setBoardName(String boardName) {
+		this.boardName = boardName;
 	}
 
-	public String getHigSeniorSecSchoolSession() {
-		return higSeniorSecSchoolSession;
+
+	public String getLocation() {
+		return location;
 	}
 
-	public void setHigSeniorSecSchoolSession(String higSeniorSecSchoolSession) {
-		this.higSeniorSecSchoolSession = higSeniorSecSchoolSession;
+
+	public void setLocation(String location) {
+		this.location = location;
 	}
 
-	public String getHigSeniorSecSchoolMarks() {
-		return higSeniorSecSchoolMarks;
+
+	public UserDO getUserDO() {
+		return userDO;
 	}
 
-	public void setHigSeniorSecSchoolMarks(String higSeniorSecSchoolMarks) {
-		this.higSeniorSecSchoolMarks = higSeniorSecSchoolMarks;
+
+	public void setUserDO(UserDO userDO) {
+		this.userDO = userDO;
 	}
 
-	public String getHigSeniorSecSchoolUniversity() {
-		return higSeniorSecSchoolUniversity;
-	}
 
-	public void setHigSeniorSecSchoolUniversity(String higSeniorSecSchoolUniversity) {
-		this.higSeniorSecSchoolUniversity = higSeniorSecSchoolUniversity;
-	}
-
-	public String getHigSeniorSecSchoolLocation() {
-		return higSeniorSecSchoolLocation;
-	}
-
-	public void setHigSeniorSecSchoolLocation(String higSeniorSecSchoolLocation) {
-		this.higSeniorSecSchoolLocation = higSeniorSecSchoolLocation;
-	}
-
-	public String getUgCollegeName() {
-		return ugCollegeName;
-	}
-
-	public void setUgCollegeName(String ugCollegeName) {
-		this.ugCollegeName = ugCollegeName;
-	}
-
-	public String getUgCollegeSession() {
-		return ugCollegeSession;
-	}
-
-	public void setUgCollegeSession(String ugCollegeSession) {
-		this.ugCollegeSession = ugCollegeSession;
-	}
-
-	public String getUgCollegeMarks() {
-		return ugCollegeMarks;
-	}
-
-	public void setUgCollegeMarks(String ugCollegeMarks) {
-		this.ugCollegeMarks = ugCollegeMarks;
-	}
-
-	public String getUgCollegeUniversity() {
-		return ugCollegeUniversity;
-	}
-
-	public void setUgCollegeUniversity(String ugCollegeUniversity) {
-		this.ugCollegeUniversity = ugCollegeUniversity;
-	}
-
-	public String getUgCollegeLocation() {
-		return ugCollegeLocation;
-	}
-
-	public void setUgCollegeLocation(String ugCollegeLocation) {
-		this.ugCollegeLocation = ugCollegeLocation;
-	}
-
-	public String getUgStream() {
-		return ugStream;
-	}
-
-	public void setUgStream(String ugStream) {
-		this.ugStream = ugStream;
-	}
-
-	public String getPgCollegeName() {
-		return pgCollegeName;
-	}
-
-	public void setPgCollegeName(String pgCollegeName) {
-		this.pgCollegeName = pgCollegeName;
-	}
-
-	public String getPgCollegeSession() {
-		return pgCollegeSession;
-	}
-
-	public void setPgCollegeSession(String pgCollegeSession) {
-		this.pgCollegeSession = pgCollegeSession;
-	}
-
-	public String getPgCollegeMarks() {
-		return pgCollegeMarks;
-	}
-
-	public void setPgCollegeMarks(String pgCollegeMarks) {
-		this.pgCollegeMarks = pgCollegeMarks;
-	}
-
-	public String getPgCollegeUniversity() {
-		return pgCollegeUniversity;
-	}
-
-	public void setPgCollegeUniversity(String pgCollegeUniversity) {
-		this.pgCollegeUniversity = pgCollegeUniversity;
-	}
-
-	public String getPgCollegeLocation() {
-		return pgCollegeLocation;
-	}
-
-	public void setPgCollegeLocation(String pgCollegeLocation) {
-		this.pgCollegeLocation = pgCollegeLocation;
-	}
-
-	public String getPgStream() {
-		return pgStream;
-	}
-
-	public void setPgStream(String pgStream) {
-		this.pgStream = pgStream;
-	}
-
-	public EducationDetails(Long educationId,
-
-			String seniorSecSchoolName, String seniorSecSchoolSession, String seniorSecSchoolMarks,
-			String seniorSecSchoolUniversity, String seniorSecSchoolLocation,
-
-			String higSeniorSecSchoolName, String higSeniorSecSchoolSession, String higSeniorSecSchoolMarks,
-			String higSeniorSecSchoolUniversity, String higSeniorSecSchoolLocation,
-
-			String ugCollegeName, String ugCollegeSession, String ugCollegeMarks, String ugCollegeUniversity,
-			String ugCollegeLocation, String ugStream,
-
-			String pgCollegeName, String pgCollegeSession, String pgCollegeMarks, String pgCollegeUniversity,
-			String pgCollegeLocation, String pgStream) {
+	public EducationDetails(Long educationId, String educationType, String schoolName, String sessionPeriod,
+			String scoredMarks, String totalMarks, String boardName, String location, UserDO userDO) {
 		super();
 		this.educationId = educationId;
-		this.seniorSecSchoolName = seniorSecSchoolName;
-		this.seniorSecSchoolSession = seniorSecSchoolSession;
-		this.seniorSecSchoolMarks = seniorSecSchoolMarks;
-		this.seniorSecSchoolUniversity = seniorSecSchoolUniversity;
-		this.seniorSecSchoolLocation = seniorSecSchoolLocation;
-		this.higSeniorSecSchoolName = higSeniorSecSchoolName;
-		this.higSeniorSecSchoolSession = higSeniorSecSchoolSession;
-		this.higSeniorSecSchoolMarks = higSeniorSecSchoolMarks;
-		this.higSeniorSecSchoolUniversity = higSeniorSecSchoolUniversity;
-		this.higSeniorSecSchoolLocation = higSeniorSecSchoolLocation;
-		this.ugCollegeName = ugCollegeName;
-		this.ugCollegeSession = ugCollegeSession;
-		this.ugCollegeMarks = ugCollegeMarks;
-		this.ugCollegeUniversity = ugCollegeUniversity;
-		this.ugCollegeLocation = ugCollegeLocation;
-		this.ugStream = ugStream;
-		this.pgCollegeName = pgCollegeName;
-		this.pgCollegeSession = pgCollegeSession;
-		this.pgCollegeMarks = pgCollegeMarks;
-		this.pgCollegeUniversity = pgCollegeUniversity;
-		this.pgCollegeLocation = pgCollegeLocation;
-		this.pgStream = pgStream;
-	}
-
-	public EducationDetails() {
-
+		this.educationType = educationType;
+		this.schoolName = schoolName;
+		this.sessionPeriod = sessionPeriod;
+		this.scoredMarks = scoredMarks;
+		this.totalMarks = totalMarks;
+		this.boardName = boardName;
+		this.location = location;
+		this.userDO = userDO;
 	}
 }
