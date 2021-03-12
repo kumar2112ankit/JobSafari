@@ -88,6 +88,8 @@ public class UserService {
 				throw new Exception("User Not Available");
 			}
 			userModel.setUserId(userDO.getUserId());
+			userModel.setPassword(userDO.getPassword());
+			userModel.setOldPassword(userDO.getOldPassword());
 			UserDO updatedUserDO = userDAO.save(userModel);
 
 			if (updatedUserDO != null) {
