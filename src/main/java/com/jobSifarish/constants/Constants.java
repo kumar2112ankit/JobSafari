@@ -13,5 +13,18 @@ public class Constants {
 	public static final String TOTAL_MARKS = "totalMarks";
 	public static final String BOARD_NAME = "boardName";
 	public static final String LOCATION = "location";
+	public static final String FIRST_NAME = "firstName";
+	public static final String MIDDLE_NAME = "middleName";
+	public static final String LAST_NAME = "lastName";
+	public static final String EMAIL_ADDRESS = "emailAddress";
+	public static final String MOBILE_NUMBER = "mobileNumber";
+	public static final String ADDRESS = "address";
+	public static final String CITY = "city";
+	public static final String STATE = "state";
+	public static final String COUNTRY = "country";
+	public static final String DOB = "dob";
+	public static final String GENDER = "gender";
+	public static final String SKILL_SET = "skillset";
+	public static final String PROFILE_IMAGE_URL = "profileImageUrl";
 
 }

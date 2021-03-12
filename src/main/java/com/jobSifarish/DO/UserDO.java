@@ -39,8 +39,9 @@ public class UserDO {
 	private String city;
 	private String state;
 	private String country;
+	private String skillSet;
+
 	@Lob
-//	@Column(name = "logo", length = 100000)
 	private byte[] profileImageUrl;
 
 	@OneToMany(mappedBy = "userDO", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -164,6 +165,14 @@ public class UserDO {
 
 	public void setProfileImageUrl(byte[] profileImageUrl) {
 		this.profileImageUrl = profileImageUrl;
+	}
+
+	public String getSkillSet() {
+		return skillSet;
+	}
+
+	public void setSkillSet(String skillSet) {
+		this.skillSet = skillSet;
 	}
 
 	public UserDO() {

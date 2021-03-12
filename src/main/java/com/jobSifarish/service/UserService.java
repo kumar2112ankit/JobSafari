@@ -16,10 +16,10 @@ import com.jobSifarish.constants.Constants;
 public class UserService {
 	@Autowired
 	private UserDAO userDAO;
-	
+
 	@Autowired
 	private PasswordEncoder passwordEncoder;
-	
+
 	public UserDO registerUser(UserDO userModel) throws Exception {
 		if (userDAO.findByEmailAddress(userModel.getEmailAddress()) != null) {
 			throw new Exception("User Name Already Available");
@@ -66,11 +66,19 @@ public class UserService {
 
 		JSONObject jsonObject = new JSONObject();
 		try {
-			jsonObject.put("firstName", userModel.getFirstName());
-			jsonObject.put("middleName", userModel.getMiddleName());
-			jsonObject.put("lastName", userModel.getLastName());
-			jsonObject.put("emailAddress", userModel.getEmailAddress());
-			jsonObject.put("mobileNumber", userModel.getMobileNumber());
+			jsonObject.put(Constants.FIRST_NAME, userModel.getFirstName());
+			jsonObject.put(Constants.MIDDLE_NAME, userModel.getMiddleName());
+			jsonObject.put(Constants.LAST_NAME, userModel.getLastName());
+			jsonObject.put(Constants.EMAIL_ADDRESS, userModel.getEmailAddress());
+			jsonObject.put(Constants.MOBILE_NUMBER, userModel.getMobileNumber());
+			jsonObject.put(Constants.CITY, userModel.getCity());
+			jsonObject.put(Constants.STATE, userModel.getState());
+			jsonObject.put(Constants.COUNTRY, userModel.getCountry());
+			jsonObject.put(Constants.SKILL_SET, userModel.getSkillSet());
+			jsonObject.put(Constants.DOB, userModel.getDob());
+			jsonObject.put(Constants.GENDER, userModel.getGender());
+			jsonObject.put(Constants.ADDRESS, userModel.getAddress());
+			jsonObject.put(Constants.PROFILE_IMAGE_URL, userModel.getProfileImageUrl());
 
 		} catch (Exception e) {
 			throw new Exception(e.getMessage());

@@ -31,4 +31,9 @@ public class ResumeBuilderController {
 		return resumeBuilderService.registerEducationalDetails(request, educationDetails);
 	}
 
+	@PostMapping(value = "/getEducationDetails")
+	public ResponseEntity<String> getEducationalDetail(HttpServletRequest request) {
+		return resumeBuilderService.getEducationalDetails(request);
+	}
+
 }

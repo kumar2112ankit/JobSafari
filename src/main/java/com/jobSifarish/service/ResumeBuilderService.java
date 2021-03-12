@@ -92,4 +92,32 @@ public class ResumeBuilderService {
 		}
 		return educationalMap;
 	}
+
+	public ResponseEntity<String> getEducationalDetails(HttpServletRequest request) {
+
+		JSONArray jsonArray = new JSONArray();
+		try {
+			List<EducationDetails> educationaList = resumeBuilderDAO
+					.findByEmailAddress(request.getUserPrincipal().getName());
+
+			for (EducationDetails educationDetails : educationaList) {
+				JSONObject outputJson = new JSONObject();
+
+				outputJson.put(Constants.EDUCATION_TYPE, educationDetails.getEducationType());
+				outputJson.put(Constants.SCHOOL_NAME, educationDetails.getSchoolName());
+				outputJson.put(Constants.SESSION_PERIOD, educationDetails.getSessionPeriod());
+				outputJson.put(Constants.SCORED_MARKS, educationDetails.getScoredMarks());
+				outputJson.put(Constants.TOTAL_MARKS, educationDetails.getTotalMarks());
+				outputJson.put(Constants.BOARD_NAME, educationDetails.getBoardName());
+				outputJson.put(Constants.LOCATION, educationDetails.getLocation());
+
+				jsonArray.put(outputJson);
+			}
+		} catch (Exception e) {
+			JSONObject outputJson = new JSONObject();
+			jsonArray.put(outputJson);
+			return CommonUtils.getResponseJsonAndHttpStatusCode(outputJson, e);
+		}
+		return new ResponseEntity<String>(jsonArray.toString(), HttpStatus.OK);
+	}
 }
