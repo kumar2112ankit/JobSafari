@@ -3,95 +3,159 @@
  */
 package com.jobSifarish.DO;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
  * @author Kumar
  *
-
-	Aug 25, 2020
+ * 
+ *         Aug 25, 2020
  */
 @Entity
 @Table
-public class JobModel {
+public class JobDiscriptionDO {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private String title;
+	private String jobTitle;
+	private String role;
+	private String companyName;
 	private String description;
 	private String location;
-	private String recuraterNmae;
-	private String technology;
-	private String jobPostDate;
-	private String lastDateOfJoining;
+	private String skillSet;
+	private Date postDate;
+	private String joiningType;
+	private String offerPackage;
+	private String experiencedRequired;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	private UserDO userDO;
+
 	public Integer getId() {
 		return id;
 	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public String getTitle() {
-		return title;
+
+	public String getJobTitle() {
+		return jobTitle;
 	}
-	public void setTitle(String title) {
-		this.title = title;
+
+	public void setJobTitle(String jobTitle) {
+		this.jobTitle = jobTitle;
 	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	public String getCompanyName() {
+		return companyName;
+	}
+
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
+	}
+
 	public String getDescription() {
 		return description;
 	}
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
 	public String getLocation() {
 		return location;
 	}
+
 	public void setLocation(String location) {
 		this.location = location;
 	}
-	public String getRecuraterNmae() {
-		return recuraterNmae;
+
+	public String getSkillSet() {
+		return skillSet;
 	}
-	public void setRecuraterNmae(String recuraterNmae) {
-		this.recuraterNmae = recuraterNmae;
+
+	public void setSkillSet(String skillSet) {
+		this.skillSet = skillSet;
 	}
-	public String getTechnology() {
-		return technology;
+
+	public Date getPostDate() {
+		return postDate;
 	}
-	public void setTechnology(String technology) {
-		this.technology = technology;
+
+	public void setPostDate(Date postDate) {
+		this.postDate = postDate;
 	}
-	public String getJobPostDate() {
-		return jobPostDate;
+
+	public String getJoiningType() {
+		return joiningType;
 	}
-	public void setJobPostDate(String jobPostDate) {
-		this.jobPostDate = jobPostDate;
+
+	public void setJoiningType(String joiningType) {
+		this.joiningType = joiningType;
 	}
-	public String getLastDateOfJoining() {
-		return lastDateOfJoining;
+
+	public String getOfferPackage() {
+		return offerPackage;
 	}
-	public void setLastDateOfJoining(String lastDateOfJoining) {
-		this.lastDateOfJoining = lastDateOfJoining;
+
+	public void setOfferPackage(String offerPackage) {
+		this.offerPackage = offerPackage;
 	}
-	public JobModel(Integer id, String title, String description, String location, String recuraterNmae,
-			String technology, String jobPostDate, String lastDateOfJoining) {
+
+	public String getExperiencedRequired() {
+		return experiencedRequired;
+	}
+
+	public void setExperiencedRequired(String experiencedRequired) {
+		this.experiencedRequired = experiencedRequired;
+	}
+
+	public UserDO getUserDO() {
+		return userDO;
+	}
+
+	public void setUserDO(UserDO userDO) {
+		this.userDO = userDO;
+	}
+
+	public JobDiscriptionDO() {
+
+	}
+
+	public JobDiscriptionDO(Integer id, String jobTitle, String role, String companyName, String description,
+			String location, String skillSet, Date postDate, String joiningType, String offerPackage,
+			String experiencedRequired, UserDO userDO) {
 		super();
 		this.id = id;
-		this.title = title;
+		this.jobTitle = jobTitle;
+		this.role = role;
+		this.companyName = companyName;
 		this.description = description;
 		this.location = location;
-		this.recuraterNmae = recuraterNmae;
-		this.technology = technology;
-		this.jobPostDate = jobPostDate;
-		this.lastDateOfJoining = lastDateOfJoining;
+		this.skillSet = skillSet;
+		this.postDate = postDate;
+		this.joiningType = joiningType;
+		this.offerPackage = offerPackage;
+		this.experiencedRequired = experiencedRequired;
+		this.userDO = userDO;
 	}
-	public JobModel() {
-		
-	}
-	
-	
-	
+
 }

@@ -75,7 +75,13 @@ public class ResumeBuilderService {
 			}
 
 			resumeBuilderDAO.saveAll(educationDetailsList);
-			outputJson.put(Constants.MESSAGE, "Educational Details Updated SuccessFully");
+
+			JSONObject dataObject = new JSONObject();
+
+			outputJson.put(Constants.DATA, dataObject);
+			outputJson.put(Constants.STATUS, HttpStatus.OK);
+
+			dataObject.put(Constants.MESSAGE, "Educational Details Updated SuccessFully");
 		} catch (Exception e) {
 			return CommonUtils.getResponseJsonAndHttpStatusCode(outputJson, e);
 		}
@@ -95,8 +101,11 @@ public class ResumeBuilderService {
 
 	public ResponseEntity<String> getEducationalDetails(HttpServletRequest request) {
 
-		JSONArray jsonArray = new JSONArray();
+		JSONObject outputJsonObject = new JSONObject();
 		try {
+
+			JSONArray jsonArray = new JSONArray();
+
 			List<EducationDetails> educationaList = resumeBuilderDAO
 					.findByEmailAddress(request.getUserPrincipal().getName());
 
@@ -113,11 +122,13 @@ public class ResumeBuilderService {
 
 				jsonArray.put(outputJson);
 			}
+
+			outputJsonObject.put(Constants.DATA, jsonArray);
+			outputJsonObject.put(Constants.MESSAGE, "Educational Details fetched succesfully");
+			outputJsonObject.put(Constants.STATUS, HttpStatus.OK);
 		} catch (Exception e) {
-			JSONObject outputJson = new JSONObject();
-			jsonArray.put(outputJson);
-			return CommonUtils.getResponseJsonAndHttpStatusCode(outputJson, e);
+			return CommonUtils.getResponseJsonAndHttpStatusCode(outputJsonObject, e);
 		}
-		return new ResponseEntity<String>(jsonArray.toString(), HttpStatus.OK);
+		return new ResponseEntity<String>(outputJsonObject.toString(), HttpStatus.OK);
 	}
 }

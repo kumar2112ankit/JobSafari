@@ -3,16 +3,17 @@
  */
 package com.jobSifarish.controller;
 
-import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jobSifarish.DO.JobModel;
+import com.jobSifarish.DO.JobDiscriptionDO;
 import com.jobSifarish.service.JobService;
 
 /**
@@ -22,23 +23,30 @@ import com.jobSifarish.service.JobService;
  *         Aug 24, 2020
  */
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping(value = "/api")
 public class JobController {
 
 	@Autowired
 	private JobService jobService;
-	
+
 	@PostMapping("/postJob")
-	public String postJob(@RequestBody JobModel job) {
-		return jobService.postJob(job);
+	public ResponseEntity<String> postJob(HttpServletRequest request, @RequestBody JobDiscriptionDO job) {
+		return jobService.postJob(job, request);
 	}
 
-	@PostMapping("/searchJob/{title}/{location}/{technology}/{date}")
-	public List<JobModel> jobSearch(@PathVariable String title,@PathVariable String location,@PathVariable String technology,@PathVariable String date) {
-		return jobService.searchJob(title,location,technology,date);
+	@PostMapping("/getPostedJobByUser")
+	public ResponseEntity<String> getPostedJobByUser(HttpServletRequest httpRequest) {
+		return jobService.getPostedJobByUser(httpRequest);
 	}
 
-	public void RelativeJob() {
+	@PostMapping("/searchJobByLocationTitle")
+	public ResponseEntity<String> jobSearch(@RequestBody String requestBody) {
+		return jobService.searchJobByLocationTitle(requestBody);
+	}
 
+	@PostMapping("/getAllJobs")
+	public ResponseEntity<String> getJobsRecord() {
+		return jobService.getAllJobRecords();
 	}
 }

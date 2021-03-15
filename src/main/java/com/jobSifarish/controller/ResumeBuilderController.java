@@ -4,6 +4,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +20,7 @@ import com.jobSifarish.service.ResumeBuilderService;
  */
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping(value = "/api")
 public class ResumeBuilderController {
 
@@ -36,4 +39,8 @@ public class ResumeBuilderController {
 		return resumeBuilderService.getEducationalDetails(request);
 	}
 
+	@GetMapping(value = "/hiapi")
+	public String getEducationalDetailGet(HttpServletRequest request) {
+		return "Hello";
+	}
 }

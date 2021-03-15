@@ -1,5 +1,7 @@
 package com.jobSifarish.service;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.boot.configurationprocessor.json.JSONObject;
@@ -38,15 +40,15 @@ public class UserService {
 		return userDAO.save(userModel);
 	}
 
-	public String validateUserName(String userName) throws Exception {
+	public Boolean validateUserName(String userName) throws Exception {
 
 		JSONObject jsonObject = new JSONObject(userName);
 
-		String isVailable = "Email not registered";
+		Boolean isVailable = false;
 
 		UserDO userModel = userDAO.findByEmailAddress(jsonObject.optString("emailAddress"));
 		if (userModel != null) {
-			isVailable = "Email Already registered";
+			isVailable = true;
 		}
 		return isVailable;
 	}
@@ -59,7 +61,11 @@ public class UserService {
 			if (userModel == null) {
 				throw new Exception("User Not Available");
 			}
-			jsonObject = createJsonForUser(userModel);
+			JSONObject dataObject = createJsonForUser(userModel);
+
+			jsonObject.put(Constants.DATA, dataObject);
+			jsonObject.put(Constants.MESSAGE, "User Details Recieved");
+			jsonObject.put(Constants.STATUS, HttpStatus.OK);
 		} catch (JSONException jsonException) {
 			jsonObject.put(Constants.E_MESSAGE, jsonException.getMessage());
 			return new ResponseEntity<>(jsonObject.toString(), HttpStatus.BAD_REQUEST);
@@ -95,24 +101,30 @@ public class UserService {
 		return jsonObject;
 	}
 
-	public ResponseEntity<String> updateUser(UserDO userModel) throws Exception {
+	public ResponseEntity<String> updateUser(UserDO userModel, HttpServletRequest request) throws Exception {
 
 		JSONObject jsonObject = new JSONObject();
 
 		try {
-			UserDO userDO = userDAO.findByEmailAddress(userModel.getEmailAddress());
+			UserDO userDO = userDAO.findByEmailAddress(request.getUserPrincipal().getName());
 			if (userDO == null) {
 				throw new Exception("User Not Available");
 			}
+
 			userModel.setUserId(userDO.getUserId());
 			userModel.setPassword(userDO.getPassword());
 			userModel.setOldPassword(userDO.getOldPassword());
+			userModel.setEmailAddress(userDO.getEmailAddress());
 			UserDO updatedUserDO = userDAO.save(userModel);
 
+			JSONObject dataObject = new JSONObject();
+
+			jsonObject.put(Constants.DATA, dataObject);
+			jsonObject.put(Constants.STATUS, HttpStatus.OK);
 			if (updatedUserDO != null) {
-				jsonObject.put(Constants.MESSAGE, "User Details Updated SuccessFully");
+				dataObject.put(Constants.MESSAGE, "User Details Updated SuccessFully");
 			} else {
-				jsonObject.put(Constants.MESSAGE, "User Not Registered");
+				dataObject.put(Constants.MESSAGE, "User Not Registered");
 			}
 		} catch (JSONException jsonException) {
 			jsonObject.put(Constants.E_MESSAGE, jsonException.getMessage());

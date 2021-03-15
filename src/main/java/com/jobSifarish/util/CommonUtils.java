@@ -43,6 +43,9 @@ public class CommonUtils {
 		if (StringUtils.isEmpty(mobile)) {
 			return false;
 		}
+		if (mobile.length() != 10) {
+			return false;
+		}
 		if (mobile.matches("[0-9]+")) {
 			return true;
 		} else {

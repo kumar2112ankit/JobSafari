@@ -4,7 +4,7 @@ public class Constants {
 
 	public static final String MESSAGE = "message";
 	public static final String E_MESSAGE = "error message";
-	public static final String IS_USER_NAME = "is user name available";
+	public static final String IS_AVAILABLE = "isAvailable";
 	public static final String RESPONSE = "response";
 	public static final String EDUCATION_TYPE = "educationType";
 	public static final String SCHOOL_NAME = "schoolName";
@@ -26,5 +26,17 @@ public class Constants {
 	public static final String GENDER = "gender";
 	public static final String SKILL_SET = "skillset";
 	public static final String PROFILE_IMAGE_URL = "profileImageUrl";
+	public static final String Authorization_Token = "Authorization-Token";
+	public static final String DATA = "data";
+	public static final String STATUS = "status";
+	public static final String JOB_TITLE = "jobTitle";
+	public static final String ROLE = "role";
+	public static final String COMPANY_NAME = "companyName";
+	public static final String DESCRIPTION = "description";
+	public static final String JOINING_TYPE = "joiningType";
+	public static final String OFFER_PACKAGE = "offerPackage";
+	public static final String EXPERIENCED_REQUIRED = "experiencedRequired";
+	public static final String DATE = "date";
+	public static final String POSTED_BY = "posted_by";
 
 }

@@ -9,16 +9,16 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import com.jobSifarish.DO.JobModel;
+import com.jobSifarish.DO.JobDiscriptionDO;
 
 /**
  * @author Kumar
  *
-
-	Aug 25, 2020
+ * 
+ *         Aug 25, 2020
  */
 @Repository
-public interface JobDAO extends JpaRepository<JobModel, Integer> {
+public interface JobDAO extends JpaRepository<JobDiscriptionDO, Integer> {
 
 	/**
 	 * @param jobDao
@@ -27,7 +27,13 @@ public interface JobDAO extends JpaRepository<JobModel, Integer> {
 	 * @param date
 	 * @return
 	 */
-	@Query("SELECT u FROM JobModel u WHERE u.title = ?1 or u.location = ?2 or u.technology = ?3 or u.jobPostDate = ?4")
-	List<JobModel> searchJob(String name, String location, String technology, String date);
+	@Query("SELECT u FROM JobDiscriptionDO u WHERE u.jobTitle like  %:titleName%   or  u.location like  %:location%")
+	List<JobDiscriptionDO> searchJobByLocationTitle(String titleName, String location);
+
+	@Query("FROM JobDiscriptionDO jd WHERE jd.userDO in (select ud from UserDO ud where emailAddress =?1)")
+	List<JobDiscriptionDO> findByEmailAddress(String name);
+
+	@Query("FROM JobDiscriptionDO jd ")
+	List<JobDiscriptionDO> getAllJobs();
 
 }
